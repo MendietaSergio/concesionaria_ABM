@@ -1,6 +1,8 @@
 package com.devmendietasergio.automovil.igu;
 
 import com.devmendietasergio.automovil.logica.Controladora;
+import javax.swing.JDialog;
+import javax.swing.JOptionPane;
 
 public class AltaAutomovil extends javax.swing.JFrame {
 
@@ -32,7 +34,7 @@ public class AltaAutomovil extends javax.swing.JFrame {
         jLimpiar1 = new javax.swing.JButton();
         txtColor = new javax.swing.JTextField();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
         jLabel3.setFont(new java.awt.Font("Segoe UI", 0, 36)); // NOI18N
         jLabel3.setText("ALTA DE AUTOMOVILES");
@@ -202,6 +204,7 @@ public class AltaAutomovil extends javax.swing.JFrame {
         int cantPuertas = Integer.parseInt(txtCantPuertas.getText());
 
         control.agregarAutomovil(modelo, marca, motor, color, patente, cantPuertas);
+        mostrarMensaje("Agregado correctamente", "Info", "Guardado Exitoso!");
     }//GEN-LAST:event_jAgregarActionPerformed
 
     private void jLimpiar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jLimpiar1ActionPerformed
@@ -211,6 +214,7 @@ public class AltaAutomovil extends javax.swing.JFrame {
         txtColor.setText("");
         txtPatente.setText("");
         txtCantPuertas.setText("");
+        mostrarMensaje("Campos limpiados correctamente", "Info", "Limpiado!");
     }//GEN-LAST:event_jLimpiar1ActionPerformed
 
 
@@ -233,4 +237,17 @@ public class AltaAutomovil extends javax.swing.JFrame {
     private javax.swing.JTextField txtMotor;
     private javax.swing.JTextField txtPatente;
     // End of variables declaration//GEN-END:variables
+
+    public void mostrarMensaje(String mensaje, String tipo, String titulo) {
+        JOptionPane optionPane = new JOptionPane(mensaje);
+        if (tipo.equals("Info")) {
+            optionPane.setMessageType(JOptionPane.INFORMATION_MESSAGE);
+        } else if (tipo.equals("Error")) {
+            optionPane.setMessageType(JOptionPane.ERROR_MESSAGE);
+        }
+        JDialog dialog = optionPane.createDialog(titulo);
+        dialog.setAlwaysOnTop(true);
+        dialog.setVisible(true);
+    }
+
 }
